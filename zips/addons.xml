@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.scttvboxes" name="[B][COLOR green]SCT TV Boxes Wizard[/COLOR][/B]" version="4.0" provider-name="SCT TV Boxes">
+<addon id="plugin.program.scttvboxes" name="SCT TV Boxes Wizard" version="4.0.0" provider-name="SCT TV Boxes">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -15,7 +15,7 @@
   </extension>
 </addon>
 
-<addon id="repository.scttvboxes" name="SCT TV Boxes Repository" version="2.0" provider-name="SCT TV Boxes">
+<addon id="repository.scttvboxes" name="SCT TV Boxes Repository" version="2.0.0" provider-name="SCT TV Boxes">
 	<extension point="xbmc.addon.repository" name="SCT TV Boxes Repository">
 		<dir>
             <info compressed="false">https://raw.githubusercontent.com/auch07/scttvboxesrepo/master/zips/addons.xml</info>
