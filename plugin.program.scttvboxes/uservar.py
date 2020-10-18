@@ -11,7 +11,7 @@ ART            = os.path.join(PATH, 'resources', 'art')
 ### User Edit Variables #################################
 #########################################################
 ADDON_ID       = xbmcaddon.Addon().getAddonInfo('id')
-ADDONTITLE     = '[B][COLOR green]SCT TV Boxes Wizard[/COLOR][/B]'
+ADDONTITLE     = 'SCT TV Boxes Wizard'
 BUILDERNAME    = 'SCT TV Boxes'
 EXCLUDES       = [ADDON_ID, 'repository.scttvboxes']
 # Enable/Disable the text file caching with 'Yes' or 'No' and age being how often it rechecks in minutes
