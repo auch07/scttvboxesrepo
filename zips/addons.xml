@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.program.scttvboxes" name="[B][COLOR green]SCT TV Boxes Wizard[/COLOR][/B]" version="4.0" provider-name="SCT TV Boxes">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="startup.py" start="startup" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">[B][COLOR green]SCT TV Boxes Wizard[/COLOR][/B] </summary>
+    <description lang="en">[B][COLOR green]SCT TV Boxes Wizard[/COLOR][/B] allows you to get access to the latest SCT TV custom builds, tools and addons.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="repository.scttvboxes" name="SCT TV Boxes Repository" version="2.0" provider-name="SCT TV Boxes">
+	<extension point="xbmc.addon.repository" name="SCT TV Boxes Repository">
+		<dir>
+            <info compressed="false">https://raw.githubusercontent.com/auch07/scttvboxesrepo/master/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/auch07/scttvboxesrepo/master/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/auch07/scttvboxesrepo/master/zips/</datadir>
+        </dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>SCT TV Boxes Repository</summary>
+		<description>Official Repository Of The SCT TV Boxes Team</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+	</extension>
+</addon>
+</addons>
