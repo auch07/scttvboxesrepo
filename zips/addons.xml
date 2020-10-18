@@ -9,7 +9,7 @@
   </extension>
   <extension point="xbmc.service" library="startup.py" start="startup" />
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">[COLOR green]SCT TV Boxes Wizard[/COLOR] </summary>
+    <summary lang="en">[COLOR green]SCT TV Boxes Wizard[/COLOR]</summary>
     <description lang="en">[COLOR green]SCT TV Boxes Wizard[/COLOR] allows you to get access to the latest SCT TV custom builds, tools and addons.</description>
     <platform>all</platform>
   </extension>
