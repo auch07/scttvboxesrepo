@@ -523,7 +523,6 @@ def firstRunSettings():
 			self.login      = 303
 			self.sources    = 304
 			self.profiles   = 305
-			self.playercore = 314
 			self.advanced   = 306
 			self.favourites = 307
 			self.superfav   = 308
@@ -534,12 +533,12 @@ def firstRunSettings():
 			self.thumbs     = 313
 			self.showdialog()
 			self.controllist     = [self.trakt, self.debrid, self.login,
-									self.sources, self.profiles, self.playercore, self.advanced,
+									self.sources, self.profiles, self.advanced,
 									self.favourites, self.superfav, self.repo,
 									self.whitelist, self.cache, self.packages,
 									self.thumbs]
 			self.controlsettings = ['keeptrakt', 'keepdebrid', 'keeplogin',
-									'keepsources', 'keepprofiles', 'keepplayercore', 'keepadvanced',
+									'keepsources', 'keepprofiles', 'keepadvanced',
 									'keepfavourites', 'keeprepos', 'keepsuper',
 									'keepwhitelist', 'clearcache', 'clearpackages',
 									'clearthumbs']
