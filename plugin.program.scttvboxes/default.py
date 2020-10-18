@@ -83,12 +83,11 @@ INCLUDEVIDEO     = wiz.getS('includevideo')
 INCLUDEALL       = wiz.getS('includeall')
 INCLUDEPLACENTA    = wiz.getS('includeplacenta')
 INCLUDEEXODUSREDUX    = wiz.getS('includeexodusredux')
+INCLUDE13CLOWNS = wiz.getS('include13clowns')
+INCLUDEZANNI = wiz.getS('includezanni')
 INCLUDEGAIA     = wiz.getS('includegaia')
 INCLUDESEREN     = wiz.getS('includeseren')
-INCLUDEOVEREASY     = wiz.getS('includeovereasy')
-INCLUDEYODA     = wiz.getS('includeyoda')
-INCLUDEVENOM     = wiz.getS('includevenom')
-INCLUDESCRUBS     = wiz.getS('includescrubs')
+INCLUDEMAGICALITY   = wiz.getS('includemagicality')
 SEPERATE         = wiz.getS('seperate')
 NOTIFY           = wiz.getS('notify')
 NOTEID           = wiz.getS('noteid')
@@ -99,7 +98,6 @@ LOGINSAVE        = wiz.getS('loginlastsave')
 KEEPFAVS         = wiz.getS('keepfavourites')
 KEEPSOURCES      = wiz.getS('keepsources')
 KEEPPROFILES     = wiz.getS('keepprofiles')
-KEEPPLAYERCORE     = wiz.getS('keepplayercore')
 KEEPADVANCED     = wiz.getS('keepadvanced')
 KEEPREPOS        = wiz.getS('keeprepos')
 KEEPSUPER        = wiz.getS('keepsuper')
@@ -777,21 +775,19 @@ def maintMenu(view=None):
     if includeall == 'true':
         includeplacenta = 'true'
         includegaia = 'true'
+        includemagicality = 'true'
         includeexodusredux = 'true'
-        includeovereasy = 'true'
-        includeyoda = 'true'
-        includevenom = 'true'
-        includescrubs = 'true'
         includeseren = 'true'
+        include13clowns = 'true'
+        includezanni = 'true'
     else:
         includeexodusredux = 'true' if INCLUDEEXODUSREDUX     == 'true' else 'false'
-        includeovereasy = 'true' if INCLUDEOVEREASY     == 'true' else 'false'
         includeplacenta = 'true' if INCLUDEPLACENTA == 'true' else 'false'
         includegaia = 'true' if INCLUDEGAIA   == 'true' else 'false'
-        includeyoda = 'true' if INCLUDEYODA   == 'true' else 'false'
-        includevenom = 'true' if INCLUDEVENOM == 'true' else 'false'
-        includescrubs = 'true' if INCLUDESCRUBS == 'true' else 'false'
         includeseren = 'true' if INCLUDESEREN   == 'true' else 'false'
+        include13clowns = 'true' if INCLUDE13CLOWNS == 'true' else 'false'
+        includezanni = 'true' if INCLUDEZANNI == 'true' else 'false'
+        includemagicality = 'true' if INCLUDEMAGICALITY == 'true' else 'false'
     sizepack   = wiz.getSize(PACKAGES)
     sizethumb  = wiz.getSize(THUMBS)
     archive    = wiz.getSize(ARCHIVE_CACHE)
@@ -802,7 +798,6 @@ def maintMenu(view=None):
     if view == "clean" or SHOWMAINT == 'true':
         addFile('Total Clean Up: [COLOR springgreen][B]%s[/B][/COLOR]' % wiz.convertSize(totalsize),    'fullclean',       icon=ICONMAINT, themeit=THEME3)
         addFile('Clear Cache: [COLOR springgreen][B]%s[/B][/COLOR]' % wiz.convertSize(sizecache),       'clearcache',      icon=ICONMAINT, themeit=THEME3)
-        if (xbmc.getCondVisibility('System.HasAddon(script.module.urlresolver)') or xbmc.getCondVisibility('System.HasAddon(script.module.resolveurl)')): addFile('Clear Resolver Function Caches',       'clearfunctioncache',      icon=ICONMAINT, themeit=THEME3)
         addFile('Clear Packages: [COLOR springgreen][B]%s[/B][/COLOR]' % wiz.convertSize(sizepack),     'clearpackages',   icon=ICONMAINT, themeit=THEME3)
         addFile('Clear Thumbnails: [COLOR springgreen][B]%s[/B][/COLOR]' % wiz.convertSize(sizethumb),  'clearthumb',      icon=ICONMAINT, themeit=THEME3)
         if os.path.exists(ARCHIVE_CACHE): addFile('Clear Archive_Cache: [COLOR springgreen][B]%s[/B][/COLOR]' % wiz.convertSize(archive), 'cleararchive',    icon=ICONMAINT, themeit=THEME3)
@@ -817,8 +812,8 @@ def maintMenu(view=None):
         addDir ('Enable/Disable Addons',          'enableaddons',    icon=ICONMAINT, themeit=THEME3)
         addFile('Enable/Disable Adult Addons',    'toggleadult',     icon=ICONMAINT, themeit=THEME3)
         addFile('Force Update Addons',            'forceupdate',     icon=ICONMAINT, themeit=THEME3)
-        # addFile('Hide Passwords On Keyboard Entry',   'hidepassword',   icon=ICONMAINT, themeit=THEME3)
-        # addFile('Unhide Passwords On Keyboard Entry', 'unhidepassword', icon=ICONMAINT, themeit=THEME3)
+        addFile('Hide Passwords On Keyboard Entry',   'hidepassword',   icon=ICONMAINT, themeit=THEME3)
+        addFile('Unhide Passwords On Keyboard Entry', 'unhidepassword', icon=ICONMAINT, themeit=THEME3)
     addDir ('[B]Misc Maintenance[/B]'     ,'maint', 'misc',   icon=ICONMAINT, themeit=THEME1)
     if view == "misc" or SHOWMAINT == 'true':
         addFile('Kodi 17 Fix',                    'kodi17fix',       icon=ICONMAINT, themeit=THEME3)
@@ -885,14 +880,13 @@ def maintMenu(view=None):
     addFile('Include Video Cache in Clear Cache: %s' % includevid.replace('true',on).replace('false',off), 'togglecache', 'includevideo', icon=ICONMAINT, themeit=THEME3)
     if includevid == 'true':
         addFile('--- Include All Video Addons: %s' % includeall.replace('true',on).replace('false',off), 'togglecache', 'includeall', icon=ICONMAINT, themeit=THEME3)
+        if xbmc.getCondVisibility('System.HasAddon(plugin.video.13clowns)'): addFile('--- Include 13Clowns: %s' % include13clowns.replace('true',on).replace('false',off), 'togglecache', 'include13clowns', icon=ICONMAINT, themeit=THEME3)
         if xbmc.getCondVisibility('System.HasAddon(plugin.video.exodusredux)'): addFile('--- Include Exodus Redux: %s' % includeexodusredux.replace('true',on).replace('false',off), 'togglecache', 'includeexodusredux', icon=ICONMAINT, themeit=THEME3)
         if xbmc.getCondVisibility('System.HasAddon(plugin.video.gaia)'): addFile('--- Include Gaia: %s' % includegaia.replace('true',on).replace('false',off), 'togglecache', 'includegaia', icon=ICONMAINT, themeit=THEME3)
-        if xbmc.getCondVisibility('System.HasAddon(plugin.video.overeasy)'): addFile('--- Include Overeasy: %s' % includeovereasy.replace('true',on).replace('false',off), 'togglecache', 'includeovereasy', icon=ICONMAINT, themeit=THEME3)
+        if xbmc.getCondVisibility('System.HasAddon(plugin.video.magicality)'): addFile('--- Include Magicality: %s' % includemagicality.replace('true',on).replace('false',off), 'togglecache', 'includemagicality', icon=ICONMAINT, themeit=THEME3)
         if xbmc.getCondVisibility('System.HasAddon(plugin.video.placenta)'): addFile('--- Include Placenta: %s' % includeplacenta.replace('true',on).replace('false',off), 'togglecache', 'includeplacenta', icon=ICONMAINT, themeit=THEME3)
-        if xbmc.getCondVisibility('System.HasAddon(plugin.video.scrubsv2)'): addFile( '--- Include Scrubs v2: %s' % includescrubs.replace('true', on).replace('false', off), 'togglecache', 'includescrubs', icon=ICONMAINT, themeit=THEME3)
         if xbmc.getCondVisibility('System.HasAddon(plugin.video.seren)'): addFile('--- Include Seren: %s' % includeseren.replace('true',on).replace('false',off), 'togglecache', 'includeseren', icon=ICONMAINT, themeit=THEME3)
-        if xbmc.getCondVisibility('System.HasAddon(plugin.video.venom)'): addFile('--- Include Venom: %s' % includevenom.replace('true', on).replace('false', off), 'togglecache', 'includevenom', icon=ICONMAINT, themeit=THEME3)
-        if xbmc.getCondVisibility('System.HasAddon(plugin.video.yoda)'): addFile('--- Include Yoda: %s' % includeyoda.replace('true',on).replace('false',off), 'togglecache', 'includeyoda', icon=ICONMAINT, themeit=THEME3)
+        if xbmc.getCondVisibility('System.HasAddon(plugin.video.zanni)'): addFile('--- Include Zanni: %s' % includezanni.replace('true',on).replace('false',off), 'togglecache', 'includezanni', icon=ICONMAINT, themeit=THEME3)
         addFile('--- Enable All Video Addons', 'togglecache', 'true', icon=ICONMAINT, themeit=THEME3)
         addFile('--- Disable All Video Addons', 'togglecache', 'false', icon=ICONMAINT, themeit=THEME3)
     setView('files', 'viewType')
@@ -1117,7 +1111,6 @@ def saveMenu():
     sources    = 'true' if KEEPSOURCES   == 'true' else 'false'
     advanced   = 'true' if KEEPADVANCED  == 'true' else 'false'
     profiles   = 'true' if KEEPPROFILES  == 'true' else 'false'
-    playercore = 'true' if KEEPPLAYERCORE == 'true' else 'false'
     favourites = 'true' if KEEPFAVS      == 'true' else 'false'
     repos      = 'true' if KEEPREPOS     == 'true' else 'false'
     super      = 'true' if KEEPSUPER     == 'true' else 'false'
@@ -1134,7 +1127,6 @@ def saveMenu():
     addFile('Save Login Info: %s' % login.replace('true',on).replace('false',off)                  ,'togglesetting', 'keeplogin',      icon=ICONLOGIN, themeit=THEME1)
     addFile('Keep \'Sources.xml\': %s' % sources.replace('true',on).replace('false',off)           ,'togglesetting', 'keepsources',    icon=ICONSAVE,  themeit=THEME1)
     addFile('Keep \'Profiles.xml\': %s' % profiles.replace('true',on).replace('false',off)         ,'togglesetting', 'keepprofiles',   icon=ICONSAVE,  themeit=THEME1)
-    addFile('Keep \'playercorefactory.xml\': %s' % playercore.replace('true', on).replace('false', off), 'togglesetting', 'keepplayercore', icon=ICONSAVE, themeit=THEME1)
     addFile('Keep \'Advancedsettings.xml\': %s' % advanced.replace('true',on).replace('false',off) ,'togglesetting', 'keepadvanced',   icon=ICONSAVE,  themeit=THEME1)
     addFile('Keep \'Favourites.xml\': %s' % favourites.replace('true',on).replace('false',off)     ,'togglesetting', 'keepfavourites', icon=ICONSAVE,  themeit=THEME1)
     addFile('Keep Super Favourites: %s' % super.replace('true',on).replace('false',off)            ,'togglesetting', 'keepsuper',      icon=ICONSAVE,  themeit=THEME1)
@@ -1758,8 +1750,8 @@ def createMenu(type, add, name):
     return menu_items
 
 def toggleCache(state):
-    cachelist = ['includevideo', 'includeall', 'includeexodusredux', 'includegaia', 'includeovereasy', 'includeplacenta', 'includescrubs', 'includeseren', 'includevenom', 'includeyoda']
-    titlelist = ['Include Video Addons', 'Include All Addons', 'Include Exodus Redux', 'Include Gaia', 'Include Overeasy', 'Include Placenta', 'Include Scrubs v2', 'Include Seren', 'Include Venom', 'Include Yoda']
+    cachelist = ['includevideo', 'includeall', 'include13clowns', 'includeexodusredux', 'includegaia', 'includemagicality', 'includeplacenta', 'includeseren', 'includezanni' ]
+    titlelist = ['Include Video Addons', 'Include All Addons', 'Include 13Clowns', 'Include Exodus Redux', 'Include Gaia', 'Include Magicality', 'Include Placenta', 'Include Seren', 'Include Zanni']
     if state in ['true', 'false']:
         for item in cachelist:
             wiz.setS(item, state)
@@ -2174,7 +2166,7 @@ def manageSaveData(do):
         mybuilds = xbmc.translatePath(MYBUILDS)
         dir   = [traktit.TRAKTFOLD, debridit.REALFOLD, loginit.LOGINFOLD]
         xmls  = ['advancedsettings.xml', 'sources.xml', 'favourites.xml', 'profiles.xml']
-        keepx = [KEEPADVANCED, KEEPSOURCES, KEEPFAVS, KEEPPROFILES, KEEPPLAYERCORE]
+        keepx = [KEEPADVANCED, KEEPSOURCES, KEEPFAVS, KEEPPROFILES]
         traktit.traktIt('update', 'all')
         loginit.loginIt('update', 'all')
         debridit.debridIt('update', 'all')
@@ -2281,7 +2273,6 @@ def freshStart(install=None, over=False):
                 if name == 'sources.xml' and fold[-1] == 'userdata' and KEEPSOURCES == 'true': wiz.log("Keep Sources: %s" % os.path.join(root, name), xbmc.LOGNOTICE)
                 elif name == 'favourites.xml' and fold[-1] == 'userdata' and KEEPFAVS == 'true': wiz.log("Keep Favourites: %s" % os.path.join(root, name), xbmc.LOGNOTICE)
                 elif name == 'profiles.xml' and fold[-1] == 'userdata' and KEEPPROFILES == 'true': wiz.log("Keep Profiles: %s" % os.path.join(root, name), xbmc.LOGNOTICE)
-                elif name == 'playercorefactory.xml' and fold[-1] == 'userdata' and KEEPPLAYERCORE == 'true': wiz.log("Keep playercorefactory.xml: %s" % os.path.join(root, name), xbmc.LOGNOTICE)
                 elif name == 'advancedsettings.xml' and fold[-1] == 'userdata' and KEEPADVANCED == 'true':  wiz.log("Keep Advanced Settings: %s" % os.path.join(root, name), xbmc.LOGNOTICE)
                 elif name in LOGFILES: wiz.log("Keep Log File: %s" % name, xbmc.LOGNOTICE)
                 elif name.endswith('.db'):
@@ -2339,10 +2330,6 @@ def clearCache():
     if DIALOG.yesno(ADDONTITLE, '[COLOR %s]Would you like to clear cache?[/COLOR]' % COLOR2, nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Clear Cache[/COLOR][/B]'):
         wiz.clearCache()
 
-def clearFunctionCache():
-    if DIALOG.yesno(ADDONTITLE, '[COLOR %s]Would you like to clear resolver function caches?[/COLOR]' % COLOR2, nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Clear Cache[/COLOR][/B]'):
-        wiz.clearFunctionCache()
-        
 def clearArchive():
     if DIALOG.yesno(ADDONTITLE, '[COLOR %s]Would you like to clear the \'Archive_Cache\' folder?[/COLOR]' % COLOR2, nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Yes Clear[/COLOR][/B]'):
         wiz.clearArchive()
@@ -2350,7 +2337,6 @@ def clearArchive():
 def totalClean():
     if DIALOG.yesno(ADDONTITLE, '[COLOR %s]Would you like to clear cache, packages and thumbnails?[/COLOR]' % COLOR2, nolabel='[B][COLOR red]Cancel Process[/COLOR][/B]',yeslabel='[B][COLOR springgreen]Clean All[/COLOR][/B]'):
         wiz.clearCache()
-        wiz.clearFunctionCache()
         wiz.clearPackages('total')
         clearThumb('total')
 
@@ -2529,7 +2515,6 @@ elif mode=='convertpath'    : wiz.convertSpecial(HOME)
 elif mode=='currentsettings': viewAdvanced()
 elif mode=='fullclean'      : totalClean(); wiz.refresh()
 elif mode=='clearcache'     : clearCache(); wiz.refresh()
-elif mode=='clearfunctioncache'     : clearFunctionCache(); wiz.refresh()
 elif mode=='clearpackages'  : wiz.clearPackages(); wiz.refresh()
 elif mode=='clearcrash'     : wiz.clearCrash(); wiz.refresh()
 elif mode=='clearthumb'     : clearThumb(); wiz.refresh()

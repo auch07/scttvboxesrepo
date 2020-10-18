@@ -21,7 +21,7 @@ CACHEAGE       = 30
 BUILDFILE      = 'http://sct-solutions.ca/tvwizard/wizardfiles/builds.txt'
 # How often you would like it to check for build updates in days
 # 0 being every startup of kodi
-UPDATECHECK    = 0
+UPDATECHECK    = 2
 # Text File with apk info in it.
 APKFILE        = 'http://sct-solutions.ca/tvwizard/wizardfiles/apks.txt'
 # Text File with Youtube Videos urls.  Leave as 'http://' to ignore
@@ -76,7 +76,7 @@ THEME5         = '[COLOR '+COLOR1+']Current Theme:[/COLOR] [COLOR '+COLOR2+']%s[
 
 # Message for Contact Page
 # Enable 'Contact' menu item 'Yes' hide or 'No' dont hide
-HIDECONTACT    = 'No'
+HIDECONTACT    = 'Yes'
 # You can add \n to do line breaks
 CONTACT        = 'Thank you for choosing SCT TV Boxes for all your Android TV Box needs.'
 #Images used for the contact window.  http:// for default icon and fanart
@@ -89,7 +89,7 @@ CONTACTFANART  = 'http://sct-solutions.ca/tvwizard/images/fanart.jpg'
 ###        For Those With No Repo #######################
 #########################################################
 # Enable Auto Update 'Yes' or 'No'
-AUTOUPDATE     = 'Yes'
+AUTOUPDATE     = 'No'
 # Url to wizard version
 WIZARDFILE     = BUILDFILE
 #########################################################
@@ -99,7 +99,7 @@ WIZARDFILE     = BUILDFILE
 ###        Repo If Not Installed ########################
 #########################################################
 # Enable Auto Install 'Yes' or 'No'
-AUTOINSTALL    = 'Yes'
+AUTOINSTALL    = 'No'
 # Addon ID for the repository
 REPOID         = 'repository.scttvboxes'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
