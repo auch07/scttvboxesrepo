@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.scttvboxes" name="SCT TV Boxes Repository" version="2.0" provider-name="SCT TV Boxes">
+<addon id="repository.scttvboxes" name="SCT TV Boxes Repository" version="2.0.0" provider-name="SCT TV Boxes">
 	<extension point="xbmc.addon.repository" name="SCT TV Boxes Repository">
 		<dir>
             <info compressed="false">https://raw.githubusercontent.com/auch07/scttvboxesrepo/master/zips/addons.xml</info>
