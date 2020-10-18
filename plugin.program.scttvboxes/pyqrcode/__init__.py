@@ -26,10 +26,8 @@
 """This module is used to create QR Codes. It is designed to be as simple and
 as possible. It does this by using sane defaults and autodetection to make
 creating a QR Code very simple.
-
 It is recommended that you use the :func:`pyqrcode.create` function to build the
 QRCode object. This results in cleaner looking code.
-
 Examples:
         >>> import pyqrcode
         >>> import sys
@@ -55,7 +53,6 @@ def create(content, error='H', version=None, mode=None, encoding='utf-8'):
     """When creating a QR code only the content to be encoded is required,
     all the other properties of the code will be guessed based on the
     contents given. This function will return a :class:`QRCode` object.
-
     Unless you are familiar with QR code's inner workings
     it is recommended that you just specify the *content* and nothing else.
     However, there are cases where you may want to specify the various
@@ -65,7 +62,6 @@ def create(content, error='H', version=None, mode=None, encoding='utf-8'):
     directly from the standards. You may need to familiarize yourself
     with the terminology of QR codes for the names and their values to
     make sense.
-
     The *error* parameter sets the error correction level of the code. There
     are four levels defined by the standard. The first is level 'L' which
     allows for 7% of the code to be corrected. Second, is level 'M' which
@@ -79,7 +75,6 @@ def create(content, error='H', version=None, mode=None, encoding='utf-8'):
     values. By default this parameter is set to 'H' which is the highest
     possible error correction, but it has the smallest available data
     capacity.
-
     The *version* parameter specifies the size and data capacity of the
     code. Versions are any integer between 1 and 40. Where version 1 is
     the smallest QR code, and version 40 is the largest. If this parameter
@@ -88,7 +83,6 @@ def create(content, error='H', version=None, mode=None, encoding='utf-8'):
     content will fit inside of. You may want to specify this parameter
     for consistency when generating several QR codes with varying amounts
     of data. That way all of the generated codes would have the same size.
-
     The *mode* parameter specifies how the contents will be encoded. By
     default, the best possible encoding for the contents is guessed. There
     are four possible encoding methods. First, is 'numeric' which is
@@ -101,7 +95,6 @@ def create(content, error='H', version=None, mode=None, encoding='utf-8'):
     which just encodes the bytes directly into the QR code (this encoding
     is the least efficient). Finally, there is 'kanji'  encoding (i.e.
     Japanese characters), this encoding is unimplemented at this time.
-
     The *encoding* parameter specifies how the content will be interpreted.
     This parameter only matters if the *content* is a string, unicode, or
     byte array type. This parameter must be a valid encoding string. It will
@@ -115,7 +108,6 @@ class QRCode:
     build a code in memory. You can then save it in various formats. Note,
     codes can be written out as PNG files but this requires the PyPNG module.
     You can find the PyPNG module at http://packages.python.org/pypng/.
-
     Examples:
         >>> from pyqrcode import QRCode
         >>> import sys
@@ -124,7 +116,6 @@ class QRCode:
         >>> url.svg('uca.svg', scale=4)
         >>> number = QRCode(123456789012345)
         >>> number.png('big-number.png')
-
     .. note::
         For what all of the parameters do, see the :func:`pyqrcode.create`
         function.
@@ -254,7 +245,6 @@ class QRCode:
         The code's data is tested to make sure it fits inside this limited
         range. If all else fails, the data is determined to be of type
         'binary.'
-
         Note, encoding 'kanji' and ECI is not yet implemented.
         """
         #See if the data is an integer
@@ -305,17 +295,14 @@ class QRCode:
         creating a PNG of this QR code. It is meant mostly to be used in the
         console to help the user determine the pixel size of the code
         using various scales.
-
         This method will return an integer representing the width and height of
         the QR code in pixels, as if it was drawn using the given *scale*.
         Because QR codes are square, the number represents both the width
         and height dimensions.
-
         The *quiet_zone* parameter sets how wide the quiet zone around the code
         should be. According to the standard this should be 4 modules. It is
         left settable because such a wide quiet zone is unnecessary in many
         applications where the QR code is not being printed.
-
         Example:
             >>> code = pyqrcode.QRCode("I don't like spam!")
             >>> print(code.get_png_size(1))
@@ -328,19 +315,15 @@ class QRCode:
     def show(self, wait=1.2, scale=10, module_color=(0, 0, 0, 255),
             background=(255, 255, 255, 255), quiet_zone=4):
         """Displays this QR code.
-
         This method is mainly intended for debugging purposes.
-
         This method saves the output of the `png` method (with a default
         scaling factor of 10) to a temporary file and opens it with the
         standard PNG viewer application or within the standard webbrowser. The
         temporary file is deleted afterwards.
-
         If this method does not show any result, try to increase the `wait`
         parameter. This parameter specifies the time in seconds to wait till
         the temporary file is deleted. Note, that this method does not return
         until the provided amount of seconds (default: 1.2) has passed.
-
         The other parameters are simply passed on to the `png` method.
         """
         import os
@@ -368,22 +351,18 @@ class QRCode:
         PNG has a bit depth of 1. The file parameter is used to specify where
         to write the image to. It can either be an writable stream or a
         file path.
-
         .. note::
             This method depends on the pypng module to actually create the
             PNG file.
-
         This method will write the given *file* out as a PNG file. The file
         can be either a string file path, or a writable stream. The file
         will not be automatically closed if a stream is given.
-
         The *scale* parameter sets how large to draw a single module. By
         default one pixel is used to draw a single module. This may make the
         code too small to be read efficiently. Increasing the scale will make
         the code larger. Only integer scales are usable. This method will
         attempt to coerce the parameter into an integer (e.g. 2.5 will become 2,
         and '3' will become 3).
-
         The *module_color* parameter sets what color to use for the encoded
         modules (the black part on most QR codes). The *background* parameter
         sets what color to use for the background (the white part on most
@@ -394,12 +373,10 @@ class QRCode:
         color. The fourth member gives the alpha component, where 0 is
         transparent and 255 is opaque. Note, many color
         combinations are unreadable by scanners, so be judicious.
-
         The *quiet_zone* parameter sets how wide the quiet zone around the code
         should be. According to the standard this should be 4 modules. It is
         left settable because such a wide quiet zone is unnecessary in many
         applications where the QR code is not being printed.
-
         Example:
             >>> code = pyqrcode.create('Are you suggesting coconuts migrate?')
             >>> code.png('swallow.png', scale=5)
@@ -418,7 +395,6 @@ class QRCode:
         code is drawn by drawing only the modules corresponding to a 1. They
         are drawn using a line, such that contiguous modules in a row
         are drawn with a single line.
-
         The *file* parameter is used to specify where to write the document
         to. It can either be a writable stream or a file path.
         The *scale* parameter sets how large to draw
@@ -426,23 +402,19 @@ class QRCode:
         module. This may make the code too small to be read efficiently.
         Increasing the scale will make the code larger. Unlike the png() method,
         this method will accept fractional scales (e.g. 2.5).
-
         Note, three things are done to make the code more appropriate for
         embedding in a HTML document. The "white" part of the code is actually
         transparent. The code itself has a class given by *svgclass* parameter.
         The path making up the QR code uses the class set using the *lineclass*.
         These should make the code easier to style using CSS.
-
         By default the output of this function is a complete SVG document. If
         only the code itself is desired, set the *xmldecl* to false. This will
         result in a fragment that contains only the "drawn" portion of the code.
         Likewise, you can set the *title* of the document. The SVG name space
         attribute can be suppressed by setting *svgns* to False.
-
         When True the *omithw* indicates if width and height attributes should
         be omitted. If these attributes are omitted, a ``viewBox`` attribute
         will be added to the document.
-
         You can also set the colors directly using the *module_color* and
         *background* parameters. The *module_color* parameter sets what color to
         use for the data modules (the black part on most QR codes). The
@@ -451,12 +423,10 @@ class QRCode:
         SVG or HTML color. If the background is set to None, then no background
         will be drawn, i.e. the background will be transparent. Note, many color
         combinations are unreadable by scanners, so be careful.
-
         The *quiet_zone* parameter sets how wide the quiet zone around the code
         should be. According to the standard this should be 4 modules. It is
         left settable because such a wide quiet zone is unnecessary in many
         applications where the QR code is not being printed.
-
         Example:
             >>> code = pyqrcode.create('Hello. Uhh, can we have your liver?')
             >>> code.svg('live-organ-transplants.svg', 3.6)
@@ -475,25 +445,20 @@ class QRCode:
         code is drawn by only writing the data modules corresponding to a 1.
         They are drawn using a line, such that contiguous modules in a row
         are drawn with a single line.
-
         The *file* parameter is used to specify where to write the document
         to. It can either be a writable (text) stream or a file path.
-
         The *scale* parameter sets how large to draw a single module. By
         default one point (1/72 inch) is used to draw a single module. This may
         make the code to small to be read efficiently. Increasing the scale
         will make the code larger. This method will accept fractional scales
         (e.g. 2.5).
-
         The *module_color* parameter sets the color of the data modules. The
         *background* parameter sets the background (page) color to use. They
         are specified as either a triple of floats, e.g. (0.5, 0.5, 0.5), or a
         triple of integers, e.g. (128, 128, 128). The default *module_color* is
         black. The default *background* color is no background at all.
-
         The *quiet_zone* parameter sets how large to draw the border around
         the code. As per the standard, the default value is 4 modules.
-
         Examples:
             >>> qr = pyqrcode.create('Hello world')
             >>> qr.eps('hello-world.eps', scale=2.5, module_color='#36C')
@@ -510,12 +475,10 @@ class QRCode:
         such that if printed to a compatible terminal, it will display
         a vaild QR code. The code is printed using ASCII escape
         codes that alter the coloring of the background.
-
         The *module_color* parameter sets what color to
         use for the data modules (the black part on most QR codes).
         Likewise, the *background* parameter sets what color to use
         for the background (the white part on most QR codes).
-
         There are two options for colors. The first, and most widely
         supported, is to use the 8 or 16 color scheme. This scheme uses
         eight to sixteen named colors. The following colors are
@@ -524,7 +487,6 @@ class QRCode:
         named colors that are supported by most terminals: light gray,
         dark gray, light red, light green, light blue, light yellow,
         light magenta, light cyan, and white.
-
         There are two special named colors. The first is the
         "default" color. This color is the color the background of
         the terminal is set to. The next color is the "reverse"
@@ -532,18 +494,15 @@ class QRCode:
         property that will reverse the current color. These two colors
         are the default values for *module_color* and *background*
         respectively. These values should work on most terminals.
-
         Finally, there is one more way to specify the color. Some
         terminals support 256 colors. The actual colors displayed in the
         terminal is system dependent. This is the least transportable option.
         To use the 256 color scheme set *module_color* and/or
         *background* to a number between 0 and 256.
-
         The *quiet_zone* parameter sets how wide the quiet zone around the code
         should be. According to the standard this should be 4 modules. It is
         left settable because such a wide quiet zone is unnecessary in many
         applications.
-
         Example:
             >>> code = pyqrcode.create('Example')
             >>> text = code.terminal()
@@ -557,12 +516,10 @@ class QRCode:
         The data modules are represented by 1's and the background modules are
         represented by 0's. The main purpose of this method is to allow a user
         to write their own renderer.
-
         The *quiet_zone* parameter sets how wide the quiet zone around the code
         should be. According to the standard this should be 4 modules. It is
         left settable because such a wide quiet zone is unnecessary in many
         applications.
-
         Example:
             >>> code = pyqrcode.create('Example')
             >>> text = code.text()
